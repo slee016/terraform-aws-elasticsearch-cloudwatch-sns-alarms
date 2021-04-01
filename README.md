@@ -73,6 +73,7 @@ module "es_alarms" {
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | `domain_name` | The Elasticserach domain name you want to monitor. | string | - | yes |
+| `is_enabled` | An option to enable or disable this entire module. | bool | true | no |
 | `alarm_name_postfix` | Alarm name postfix | string | `""` | no |
 | `alarm_name_prefix` | Alarm name prefix | string | `""` | no |
 | `cpu_utilization_threshold` | The maximum percentage of CPU utilization | string | `80` | no |

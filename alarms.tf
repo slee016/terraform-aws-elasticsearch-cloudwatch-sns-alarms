@@ -10,7 +10,7 @@ locals {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cluster_status_is_red" {
-  count               = var.monitor_cluster_status_is_red ? 1 : 0
+  count               = var.monitor_cluster_status_is_red && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-ClusterStatusIsRed${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -31,7 +31,7 @@ resource "aws_cloudwatch_metric_alarm" "cluster_status_is_red" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cluster_status_is_yellow" {
-  count               = var.monitor_cluster_status_is_yellow ? 1 : 0
+  count               = var.monitor_cluster_status_is_yellow && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-ClusterStatusIsYellow${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -52,7 +52,7 @@ resource "aws_cloudwatch_metric_alarm" "cluster_status_is_yellow" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "free_storage_space_too_low" {
-  count               = var.monitor_free_storage_space_too_low ? 1 : 0
+  count               = var.monitor_free_storage_space_too_low && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-FreeStorageSpaceTooLow${var.alarm_name_postfix}"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -73,7 +73,7 @@ resource "aws_cloudwatch_metric_alarm" "free_storage_space_too_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cluster_index_writes_blocked" {
-  count               = var.monitor_cluster_index_writes_blocked ? 1 : 0
+  count               = var.monitor_cluster_index_writes_blocked && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-ClusterIndexWritesBlocked${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -94,7 +94,7 @@ resource "aws_cloudwatch_metric_alarm" "cluster_index_writes_blocked" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "insufficient_available_nodes" {
-  count               = var.monitor_insufficient_available_nodes ? 1 : 0
+  count               = var.monitor_insufficient_available_nodes && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-InsufficientAvailableNodes${var.alarm_name_postfix}"
   comparison_operator = "LessThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -115,7 +115,7 @@ resource "aws_cloudwatch_metric_alarm" "insufficient_available_nodes" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "automated_snapshot_failure" {
-  count               = var.monitor_automated_snapshot_failure ? 1 : 0
+  count               = var.monitor_automated_snapshot_failure && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-AutomatedSnapshotFailure${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -136,7 +136,7 @@ resource "aws_cloudwatch_metric_alarm" "automated_snapshot_failure" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
-  count               = var.monitor_cpu_utilization_too_high ? 1 : 0
+  count               = var.monitor_cpu_utilization_too_high && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-CPUUtilizationTooHigh${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "3"
@@ -156,7 +156,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "jvm_memory_pressure_too_high" {
-  count               = var.monitor_jvm_memory_pressure_too_high ? 1 : 0
+  count               = var.monitor_jvm_memory_pressure_too_high && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-JVMMemoryPressure${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"
@@ -176,7 +176,7 @@ resource "aws_cloudwatch_metric_alarm" "jvm_memory_pressure_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "master_cpu_utilization_too_high" {
-  count               = var.monitor_master_cpu_utilization_too_high ? 1 : 0
+  count               = var.monitor_master_cpu_utilization_too_high && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-MasterCPUUtilizationTooHigh${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "3"
@@ -196,7 +196,7 @@ resource "aws_cloudwatch_metric_alarm" "master_cpu_utilization_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "master_jvm_memory_pressure_too_high" {
-  count               = var.monitor_master_jvm_memory_pressure_too_high ? 1 : 0
+  count               = var.monitor_master_jvm_memory_pressure_too_high && var.is_enabled ? 1 : 0
   alarm_name          = "${var.alarm_name_prefix}ElasticSearch-MasterJVMMemoryPressure${var.alarm_name_postfix}"
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = "1"

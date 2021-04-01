@@ -6,12 +6,12 @@ data "aws_caller_identity" "default" {}
 
 # Make a topic
 resource "aws_sns_topic" "default_prefix" {
-  count       = var.sns_topic == "" && var.create_sns_topic == true ? 1 : 0
+  count       = var.sns_topic == "" && var.create_sns_topic == true && var.is_enabled ? 1 : 0
   name_prefix = "${var.sns_topic_prefix}elasticsearch-threshold-alerts${var.sns_topic_postfix}"
 }
 
 resource "aws_sns_topic" "default" {
-  count = var.sns_topic != "" && var.create_sns_topic == true ? 1 : 0
+  count = var.sns_topic != "" && var.create_sns_topic == true && var.is_enabled ? 1 : 0
   name  = "${var.sns_topic_prefix}${var.sns_topic}${var.sns_topic_postfix}"
 }
 
@@ -37,13 +37,13 @@ locals {
 }
 
 resource "aws_sns_topic_policy" "default" {
-  count  = var.create_sns_topic == true ? 1 : 0
+  count  = var.create_sns_topic == true && var.is_enabled ? 1 : 0
   arn    = local.aws_sns_topic_arn
   policy = data.aws_iam_policy_document.sns_topic_policy[0].json
 }
 
 data "aws_iam_policy_document" "sns_topic_policy" {
-  count     = var.create_sns_topic == true ? 1 : 0
+  count     = var.create_sns_topic == true && var.is_enabled ? 1 : 0
   policy_id = "__default_policy_ID"
 
   statement {

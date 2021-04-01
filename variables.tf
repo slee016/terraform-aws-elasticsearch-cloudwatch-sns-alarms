@@ -142,3 +142,9 @@ variable "master_jvm_memory_pressure_threshold" {
 
 
 }
+
+variable "is_enabled" {
+  description = "Boolean that allows you to enable or disable this module"
+  type        = bool
+  default     = true
+}
